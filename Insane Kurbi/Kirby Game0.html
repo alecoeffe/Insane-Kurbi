@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	     <meta charset="utf-8"/>
+	     <link rel="stylesheet" href="style0.css"/>
+	     <title>Kirby Game</title>
+	</head>
+	 
+	<body>
+		<h1> INSANE KURBY </h1>
+
+		<div id= "wrap">
+			<div id="hero">
+				<img id="kirby" src="hero0.png" />
+			</div>
+
+			<div id="piege1">
+				<img src="piege.gif" />
+				<img src="piege.gif" />
+				<img src="piege.gif" />
+				<img src="piege.gif" />
+			</div>
+
+			<div id="piege2">
+				<img src="trap0.png">
+			</div>
+
+			<div id="piege3">
+				<img src="piege.gif" />
+				<img src="piege.gif" />
+				<img src="piege.gif" />
+				<img src="piege.gif" />
+			</div>
+
+			<div id="piege4">
+				<img src="trap0.png">
+			</div>
+
+			<div id="end">
+				<img src="fin.gif" id="fin" />
+			</div>
+		</div>
+			
+		<script>
+			var timer;
+			var kirby= document.getElementById('kirby');
+			var hero= document.getElementById('hero');
+			var isJumping;
+			var unJumping;
+			var isMoveLeft;
+			var isMoveRight;
+			var i= hero.offsetLeft;
+			var e= hero.offsetTop;
+
+			function init() {
+				isJumping= false;
+				unJumping= false;
+				isMoveRight= false;
+				isMoveLeft= false;
+				hero.style.left= 50 + "px";
+				hero.style.top= 230 + "px";
+				i= 50;
+				e= 230;
+				hero
+				kirby.src= "hero0.png";
+				if (timer != null) {
+					clearInterval(timer);
+				}
+				timer= setInterval(update, 100);
+			}
+
+			function update() {
+				if (isJumping && e > 30) {
+					e -= 40;
+					hero.style.top= e + "px";
+					checkJump();
+					collision();
+				} 
+				if (unJumping && e < 230) {
+					e += 40;
+					hero.style.top= e + "px";
+					checkJump();
+					collision();
+				}
+				if (isMoveLeft) {
+					i -= 15;
+					hero.style.left= i + "px";
+					collision();
+				}
+				if (isMoveRight) {
+					i += 15;
+					hero.style.left= i + "px";
+					collision();
+				}
+			}
+
+			document.addEventListener('keydown', moveDown);
+			document.addEventListener('keyup', moveUp);
+
+			function moveDown() {
+				switch (event.keyCode) {
+					case 37:
+						isMoveLeft= true;
+						kirby.src= "hero11.png";
+						break;
+					case 38:
+						isJumping= true;
+						unJumping= false;
+						break;
+					case 39:
+						isMoveRight= true;
+						kirby.src= "hero1.png";
+						break;
+				}
+			}
+
+			function moveUp() {
+				switch (event.keyCode) {
+					case 37:
+						isMoveLeft= false;
+						kirby.src= "hero00.png";
+						break;
+					case 38:
+						isJumping= false;
+						unJumping= true;
+						break;
+					case 39:
+						isMoveRight= false;
+						kirby.src= "hero0.png";
+						break;
+				}
+			}
+
+			function checkJump() {
+				if (e == 30) {
+					e += 200;
+					hero.style.top= e + "px";
+				}
+			}
+
+			function collision() {
+				if (i > 320 && i < 425 && e > 225) {
+					alert("You Loose");
+					init();
+				} else if (i > 1160) {
+					alert("You Win");
+					init();
+				} else if (i > 965 && i < 1070 && e > 225) {
+					alert("You Loose");
+					init();
+				}
+			}
+
+			init();
+		</script>
+	</body>
+</html> 

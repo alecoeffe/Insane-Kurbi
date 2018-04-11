@@ -1,0 +1,62 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+@import url('https://fonts.googleapis.com/css?family=Gaegu');
+
+body{
+	
+	width: 100%;
+	height: 300px;
+	background-color: #230938;
+}
+#hero{
+	position: absolute;
+	z-index: 1;
+	top: 240px;
+	left: 50px;
+}
+h1{
+	text-align: center;
+	color: red;
+	margin-top: 50px;
+	font-family: 'Gaegu', cursive;
+}
+#wrap{
+	background: url(scareBack.png) no-repeat;
+	background-size: cover;
+	position: relative;
+	width: 100%;
+	height: 280px;
+	margin-top: 50px;
+}
+#piege1{
+	position: absolute;
+	z-index: 0;
+	top: 255px;
+	left: 360px;
+}
+#piege2{
+	position: absolute;
+	z-index: 0;
+	top: 20px;
+	left: 375px;
+}
+#piege3{
+	position: absolute;
+	z-index: 0;
+	top: 255px;
+	left: 1000px;
+}
+#piege4{
+	position: absolute;
+	z-index: 0;
+	top: 20px;
+	left: 1015px;
+}
+#end{
+	position: absolute;
+	z-index: 0;
+	top: 242px;
+	left: 1200px;
+}
